@@ -10,7 +10,7 @@ const TabsContainer = styled.div`
 `;
 
 const TabPanelContainer = styled.div`
-  height: 100vh;
+  // height: 100vh;
 `;
 
 function App() {

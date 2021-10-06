@@ -23,11 +23,11 @@ export const StylizedTab = styled.button`
   ${(p) =>
     p.active &&
     css`
-      //   border-bottom: 2px solid #00adb5;
       color: #fff;
       font-weight: bold;
       background: #084e81;
       border-radius: 5px;
+      border-top: 1px solid #0997ff;
     `}
   ${(p) => !p.active && p.inactiveStyle}
 `;
