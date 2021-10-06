@@ -2,6 +2,7 @@ import "./App.css";
 import { useState } from "react";
 import { Tabs, Tab, TabPanel } from "./components/tabs/Tabs";
 import styled from "styled-components";
+import * as d3 from "d3";
 
 const TabsContainer = styled.div`
   display: flex;
