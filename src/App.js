@@ -39,7 +39,7 @@ function App() {
           <Tabs selectedTab={activeTab} onChange={handleChange}>
             <Tab label="Line Chart" value={0}></Tab>
             <Tab label="Bar Chart" value={1}></Tab>
-            <Tab label="Pie Graph" value={2}></Tab>
+            <Tab label="Pie Chart" value={2}></Tab>
           </Tabs>
         </TabsContainer>
       </header>
