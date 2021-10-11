@@ -39,3 +39,7 @@ main {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+svg {
+  overflow: visible;
+}

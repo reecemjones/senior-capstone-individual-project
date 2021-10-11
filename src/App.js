@@ -1,9 +1,9 @@
 import "./App.css";
 import { useState } from "react";
 import { Tabs, Tab, TabPanel } from "./components/tabs/Tabs";
-import styled from "styled-components";
 import BarChart from "./components/BarChart";
-import * as d3 from "d3";
+import LineChart from "./components/LineChart";
+import styled from "styled-components";
 
 const TabsContainer = styled.div`
   display: flex;
@@ -17,10 +17,12 @@ const TabPanelContainer = styled.div`
 
 function App() {
   const [activeTab, setActiveTab] = useState(1);
-  const [width, setWidth] = useState(800);
-  const [height, setHeight] = useState(400);
-  const [id, setId] = useState("barchart");
-  const [grades, setGrades] = useState([
+  const [lineChartId, setLineChartId] = useState("linechart");
+  const [lineChartData, setLineChartData] = useState([
+    25, 30, 45, 60, 20, 65, 75,
+  ]);
+  const [barChartId, setBarChartId] = useState("barchart");
+  const [barChartData, setBarChartData] = useState([
     { name: "Simon", score: 80 },
     { name: "Mary", score: 98 },
     { name: "Simon", score: 60 },
@@ -38,7 +40,7 @@ function App() {
         <h1 className="title">Individual Project | Data Visualizations</h1>
         <TabsContainer>
           <Tabs selectedTab={activeTab} onChange={handleChange}>
-            <Tab label="Line Graph" value={0}></Tab>
+            <Tab label="Line Chart" value={0}></Tab>
             <Tab label="Bar Chart" value={1}></Tab>
             <Tab label="Pie Graph" value={2}></Tab>
           </Tabs>
@@ -47,10 +49,20 @@ function App() {
       <main>
         <TabPanelContainer>
           <TabPanel value={activeTab} selectedIndex={0}>
-            <h1>Tab 1</h1>
+            <LineChart
+              data={lineChartData}
+              width="700"
+              height="300"
+              id={lineChartId}
+            />
           </TabPanel>
           <TabPanel value={activeTab} selectedIndex={1}>
-            <BarChart data={grades} width={width} height={height} id={id} />
+            <BarChart
+              data={barChartData}
+              width="800"
+              height="400"
+              id={barChartId}
+            />
           </TabPanel>
           <TabPanel value={activeTab} selectedIndex={2}>
             <h1>Tab 3</h1>
