@@ -42,6 +42,7 @@ function BarChart(props) {
       .attr("y", (d) => y(d.score))
       .attr("title", (d) => d.score)
       .attr("height", (d) => y(0) - y(d.score))
+      .transition()
       .attr("width", x.bandwidth())
       .attr("class", "rectangle");
 
