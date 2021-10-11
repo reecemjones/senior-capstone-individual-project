@@ -1,5 +1,11 @@
-.rectangle:hover {
+.bar:hover {
   cursor: pointer;
-  transition: opacity 0.3s;
-  opacity: 0.66;
+  /* transition: opacity 0.1s; */
+  opacity: 0.9;
+}
+
+.tooltip {
+  fill: white;
+  font-size: 18px;
+  font-weight: bold;
 }
