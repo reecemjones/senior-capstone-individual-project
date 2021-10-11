@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Tabs, Tab, TabPanel } from "./components/tabs/Tabs";
 import BarChart from "./components/barchart/BarChart";
 import LineChart from "./components/linechart/LineChart";
+import PieChart from "./components/piechart/PieChart";
 import styled from "styled-components";
 
 const TabsContainer = styled.div`
@@ -60,7 +61,7 @@ function App() {
           />
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={2}>
-          <h1>Tab 3</h1>
+          <PieChart />
         </TabPanel>
       </main>
     </>
