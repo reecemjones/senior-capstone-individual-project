@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 import "./BarChart.css";
 
+/*  General guide that I followed https://www.youtube.com/watch?v=LQHt0wr3ybw */
+
 function BarChart(props) {
   useEffect(() => {
     drawChart();
