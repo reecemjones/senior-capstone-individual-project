@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as d3 from "d3";
 
+/*  General guide that I followed https://www.youtube.com/watch?v=hR8xtl_IbCw */
+
 function LineChart(props) {
   useEffect(() => {
     drawChart();
