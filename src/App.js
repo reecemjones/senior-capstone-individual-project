@@ -17,8 +17,6 @@ const TabPanelContainer = styled.div`
 
 function App() {
   const [activeTab, setActiveTab] = useState(1);
-  const [width, setWidth] = useState(800);
-  const [height, setHeight] = useState(400);
   const [lineChartId, setLineChartId] = useState("linechart");
   const [lineChartData, setLineChartData] = useState([
     25, 30, 45, 60, 20, 65, 75,
@@ -51,13 +49,18 @@ function App() {
       <main>
         <TabPanelContainer>
           <TabPanel value={activeTab} selectedIndex={0}>
-            <LineChart data={lineChartData} id={lineChartId} />
+            <LineChart
+              data={lineChartData}
+              width="700"
+              height="300"
+              id={lineChartId}
+            />
           </TabPanel>
           <TabPanel value={activeTab} selectedIndex={1}>
             <BarChart
               data={barChartData}
-              width={width}
-              height={height}
+              width="800"
+              height="400"
               id={barChartId}
             />
           </TabPanel>
