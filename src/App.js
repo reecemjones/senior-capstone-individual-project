@@ -11,10 +11,6 @@ const TabsContainer = styled.div`
   border-bottom: 1px solid #505050;
 `;
 
-const TabPanelContainer = styled.div`
-  // height: 100vh;
-`;
-
 function App() {
   const [activeTab, setActiveTab] = useState(1);
   const [lineChartId, setLineChartId] = useState("linechart");
@@ -47,27 +43,25 @@ function App() {
         </TabsContainer>
       </header>
       <main>
-        <TabPanelContainer>
-          <TabPanel value={activeTab} selectedIndex={0}>
-            <LineChart
-              data={lineChartData}
-              width="700"
-              height="300"
-              id={lineChartId}
-            />
-          </TabPanel>
-          <TabPanel value={activeTab} selectedIndex={1}>
-            <BarChart
-              data={barChartData}
-              width="800"
-              height="400"
-              id={barChartId}
-            />
-          </TabPanel>
-          <TabPanel value={activeTab} selectedIndex={2}>
-            <h1>Tab 3</h1>
-          </TabPanel>
-        </TabPanelContainer>
+        <TabPanel value={activeTab} selectedIndex={0}>
+          <LineChart
+            data={lineChartData}
+            width="700"
+            height="300"
+            id={lineChartId}
+          />
+        </TabPanel>
+        <TabPanel value={activeTab} selectedIndex={1}>
+          <BarChart
+            data={barChartData}
+            width="800"
+            height="400"
+            id={barChartId}
+          />
+        </TabPanel>
+        <TabPanel value={activeTab} selectedIndex={2}>
+          <h1>Tab 3</h1>
+        </TabPanel>
       </main>
     </>
   );
