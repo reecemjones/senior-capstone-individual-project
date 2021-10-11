@@ -46,14 +46,14 @@ function App() {
         <TabPanel value={activeTab} selectedIndex={0}>
           <LineChart
             data={lineChartData}
-            width="700"
-            height="300"
+            width="800"
+            height="400"
             id={lineChartId}
           />
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={1}>
           <BarChart
-            data={barChartData}
+            data={lineChartData}
             width="800"
             height="400"
             id={barChartId}
