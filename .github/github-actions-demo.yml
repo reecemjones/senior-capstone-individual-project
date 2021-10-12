@@ -25,4 +25,4 @@ jobs:
         run: npm install -g surge
 
       - name: Deploy to Surge
-        run: surge ./build https://sen-cap-ip.surge.sh/ --token
+        run: surge ./build https://sen-cap-ip.surge.sh/ 38bcecc4c1966febd1b10e351764126c
