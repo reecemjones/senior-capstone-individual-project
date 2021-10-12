@@ -25,4 +25,4 @@ jobs:
         run: npm install -g surge
 
       - name: Deploy to Surge
-        run: surge ./build https://sen-cap-ip.surge.sh/ ${{ secrets.SURGE_TOKEN }}
+        run: surge ./build https://sen-cap-ip.surge.sh/ --token ${{ secrets.SURGE_TOKEN }}
