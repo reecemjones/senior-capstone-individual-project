@@ -15,7 +15,9 @@ function App() {
   const [activeTab, setActiveTab] = useState(1);
   const [lineChartId, setLineChartId] = useState("linechart");
   const [barChartId, setBarChartId] = useState("barchart");
-  const [data, setData] = useState([25, 30, 45, 60, 20, 65, 75]);
+  const [data, setData] = useState(
+    Array.from({ length: 12 }, () => Math.round(Math.random() * 100))
+  );
   const [width, setWidth] = useState(800);
   const [height, setHeight] = useState(400);
 
@@ -43,9 +45,19 @@ function App() {
             height={height}
             id={lineChartId}
           />
+          {/* <button
+            onClick={() => setData([...data, Math.round(Math.random() * 100)])}
+          >
+            Add data
+          </button> */}
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={1}>
           <BarChart data={data} width={width} height={height} id={barChartId} />
+          {/* <button
+            onClick={() => setData([...data, Math.round(Math.random() * 100)])}
+          >
+            Add data
+          </button> */}
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={2}>
           <h1>Tab 3</h1>
