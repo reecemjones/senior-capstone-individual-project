@@ -29,7 +29,6 @@ function App() {
     <>
       <header>
         <h1 className="title">Individual Project | Data Visualizations</h1>
-        This should show up if I successfully set up github actions.
         <TabsContainer>
           <Tabs selectedTab={activeTab} onChange={handleChange}>
             <Tab label="Line Chart" value={0}></Tab>
