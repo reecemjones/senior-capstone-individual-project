@@ -1,0 +1,8 @@
+.myDot {
+  cursor: pointer;
+}
+
+.myDot:hover {
+  fill: #00ffa6;
+  opacity: 0.77;
+}

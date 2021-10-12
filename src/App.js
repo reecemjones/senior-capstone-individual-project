@@ -16,7 +16,9 @@ function App() {
   const [lineChartId, setLineChartId] = useState("linechart");
   const [barChartId, setBarChartId] = useState("barchart");
   const [data, setData] = useState(
-    Array.from({ length: 12 }, () => Math.round(Math.random() * 100))
+    Array.from({ length: Math.floor(Math.random() * 24) + 8 }, () =>
+      Math.round(Math.random() * 100)
+    )
   );
   const [width, setWidth] = useState(800);
   const [height, setHeight] = useState(400);
