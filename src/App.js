@@ -1,9 +1,9 @@
-import "./App.css";
 import { useState } from "react";
 import { Tabs, Tab, TabPanel } from "./components/tabs/Tabs";
 import BarChart from "./components/barchart/BarChart";
 import LineChart from "./components/linechart/LineChart";
 import styled from "styled-components";
+import "./App.css";
 
 const TabsContainer = styled.div`
   display: flex;
