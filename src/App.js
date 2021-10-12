@@ -15,17 +15,14 @@ const TabsContainer = styled.div`
 function App() {
   const [activeTab, setActiveTab] = useState(1);
   const [lineChartId, setLineChartId] = useState("linechart");
-  const [lineChartData, setLineChartData] = useState([
-    25, 30, 45, 60, 20, 65, 75,
-  ]);
   const [barChartId, setBarChartId] = useState("barchart");
-  const [barChartData, setBarChartData] = useState([
-    { name: "Simon", score: 80 },
-    { name: "Mary", score: 98 },
-    { name: "Simon", score: 60 },
-    { name: "Dylan", score: 92 },
-    { name: "Bob", score: 75 },
-  ]);
+  const [data, setData] = useState(
+    Array.from({ length: Math.floor(Math.random() * 24) + 8 }, () =>
+      Math.round(Math.random() * 100)
+    )
+  );
+  const [width, setWidth] = useState(800);
+  const [height, setHeight] = useState(400);
 
   const handleChange = (e, value) => {
     setActiveTab(value);
@@ -46,19 +43,14 @@ function App() {
       <main>
         <TabPanel value={activeTab} selectedIndex={0}>
           <LineChart
-            data={lineChartData}
-            width="700"
-            height="300"
+            data={data}
+            width={width}
+            height={height}
             id={lineChartId}
           />
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={1}>
-          <BarChart
-            data={barChartData}
-            width="800"
-            height="400"
-            id={barChartId}
-          />
+          <BarChart data={data} width={width} height={height} id={barChartId} />
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={2}>
           <PieChart />

@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 import "./BarChart.css";
 
+/*  General guide that I followed https://www.youtube.com/watch?v=LQHt0wr3ybw */
+
 function BarChart(props) {
   useEffect(() => {
     drawChart();
@@ -12,56 +14,79 @@ function BarChart(props) {
 
     const width = props.width;
     const height = props.height;
-    const margin = { top: 50, bottom: 50, left: 50, right: 50 };
 
+    // create initial svg element
     const svg = d3
       .select(`#${props.id}`)
       .append("svg")
-      .attr("height", height - margin.top - margin.bottom)
-      .attr("width", width - margin.left - margin.right)
-      .attr("viewBox", [0, 0, width, height]);
+      .attr("height", height)
+      .attr("width", width);
 
-    const x = d3
-      .scaleBand()
-      .domain(d3.range(data.length))
-      .range([margin.left, width - margin.right])
-      .padding(0.1);
-
-    const y = d3
+    // create xScale & yScale range & colorScale
+    const xScale = d3
+      .scaleBand() // splits xrange into equally wide bands (bars)
+      .domain(data.map((value, index) => index)) // xrange data
+      .range([0, width]) // width in pixels
+      .padding(0.15); // adds padding between each band (bars)
+    const yScale = d3
       .scaleLinear()
-      .domain([0, 100])
-      .range([height - margin.bottom, margin.top]);
+      .domain([0, Math.max(...data) * 1.2]) // yrange data
+      .range([height, 0]); // height in pixels
+    const colorScale = d3
+      .scaleLinear()
+      .domain([Math.min(...data), Math.max(...data), Math.max(...data)])
+      .range(["royalblue", "#55CBBC", "white"])
+      .clamp(true);
 
+    // append x & y axis labels
     svg
       .append("g")
-      .attr("fill", "royalblue")
-      .selectAll("rect")
-      .data(data.sort((a, b) => d3.descending(a.score, b.score)))
+      .style("transform", `translateY(${height}px)`)
+      .call(
+        d3
+          .axisBottom(xScale)
+          .ticks(data.length)
+          .tickFormat((index) => index + 1)
+      )
+      .attr("font-size", "16px");
+    svg
+      .append("g")
+      .style("transform", `translateX(${width}px)`)
+      .call(d3.axisRight(yScale))
+      .attr("font-size", "16px");
+
+    // append bars
+    svg
+      .selectAll(".bar")
+      .data(data)
       .join("rect")
-      .attr("x", (d, i) => x(i))
-      .attr("y", (d) => y(d.score))
-      .attr("title", (d) => d.score)
-      .attr("height", (d) => y(0) - y(d.score))
+      .attr("class", "bar")
+      .attr("fill", colorScale)
+      .style("transform", "scale(1, -1")
+      .attr("x", (value, index) => xScale(index))
+      .attr("y", height * -1)
+      .attr("width", xScale.bandwidth()) // equal to the width of 1 band
+      .on("mouseenter", (event, value) => {
+        const index = svg.selectAll(".bar").nodes().indexOf(event.target);
+        svg
+          .selectAll(".tooltip")
+          .data([value])
+          .join((enter) => enter.append("text").attr("y", yScale(value) - 4))
+          .attr("class", "tooltip")
+          .text(value)
+          .attr("x", xScale(index) + xScale.bandwidth() / 2)
+          .attr("text-anchor", "middle")
+          .transition()
+          .attr("y", yScale(value) - 8)
+          .attr("opacity", 1);
+      })
+      .on("mouseleave", () => svg.select(".tooltip").remove())
       .transition()
-      .attr("width", x.bandwidth())
-      .attr("class", "rectangle");
-
-    svg.append("g").call((g) => {
-      g.attr("transform", `translate(0, ${height - margin.bottom})`)
-        .call(d3.axisBottom(x).tickFormat((i) => data[i].name))
-        .attr("font-size", "20px");
-    });
-
-    svg.append("g").call((g) => {
-      g.attr("transform", `translate(${margin.left}, 0)`)
-        .call(d3.axisLeft(y).ticks(null, data.format))
-        .attr("font-size", "20px");
-    });
-
-    svg.node();
+      .duration(2000)
+      .attr("height", (value) => height - yScale(value));
   }
 
-  return <div id={props.id}></div>;
+  return <div id={props.id} style={{ marginTop: 40 }}></div>;
 }
 
 export default BarChart;

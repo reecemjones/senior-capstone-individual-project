@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import * as d3 from "d3";
+import "./LineChart.css";
 
 /*  General guide that I followed https://www.youtube.com/watch?v=hR8xtl_IbCw */
 
@@ -64,6 +65,35 @@ function LineChart(props) {
       .attr("d", myLine)
       .attr("fill", "none")
       .attr("stroke", "royalblue");
+
+    // add dots to lines
+    svg
+      .selectAll(".myDot")
+      .data(data)
+      .join("circle")
+      .attr("class", "myDot")
+      .attr("stroke", "#02101a")
+      .attr("r", 5)
+      .on("mouseenter", (event, value) => {
+        const index = svg.selectAll(".bar").nodes().indexOf(event.target);
+        svg
+          .selectAll(".tooltip")
+          .data([value])
+          .join((enter) => enter.append("text").attr("y", yScale(value) - 4))
+          .attr("class", "tooltip")
+          .text(value)
+          .attr("x", xScale(index))
+          .attr("text-anchor", "middle")
+          .transition()
+          .attr("y", yScale(value) - 8)
+          .attr("opacity", 1);
+      })
+      .on("mouseleave", () => svg.select(".tooltip").remove())
+      .attr("fill", "aquamarine")
+      .attr("cx", (value, index) => xScale(index))
+      .attr("cy", yScale);
+
+    console.log(xScale(3));
   }
 
   return <div id={props.id} style={{ marginTop: 40 }}></div>;
