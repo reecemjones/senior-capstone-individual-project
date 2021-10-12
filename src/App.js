@@ -45,19 +45,9 @@ function App() {
             height={height}
             id={lineChartId}
           />
-          {/* <button
-            onClick={() => setData([...data, Math.round(Math.random() * 100)])}
-          >
-            Add data
-          </button> */}
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={1}>
           <BarChart data={data} width={width} height={height} id={barChartId} />
-          {/* <button
-            onClick={() => setData([...data, Math.round(Math.random() * 100)])}
-          >
-            Add data
-          </button> */}
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={2}>
           <h1>Tab 3</h1>
