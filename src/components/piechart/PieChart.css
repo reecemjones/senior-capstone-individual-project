@@ -1,0 +1,13 @@
+.arc {
+  cursor: pointer;
+  transition: filter 0.3s;
+}
+
+.arc:hover {
+  filter: brightness(110%);
+  cursor: pointer;
+}
+
+.arch:hover text {
+  fill: purple;
+}

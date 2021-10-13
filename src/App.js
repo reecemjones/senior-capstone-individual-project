@@ -16,6 +16,7 @@ function App() {
   const [activeTab, setActiveTab] = useState(1);
   const [lineChartId, setLineChartId] = useState("linechart");
   const [barChartId, setBarChartId] = useState("barchart");
+  const [pieChartId, setPieChartId] = useState("piechart");
   const [data, setData] = useState(
     Array.from({ length: Math.floor(Math.random() * 24) + 8 }, () =>
       Math.round(Math.random() * 100)
@@ -53,7 +54,14 @@ function App() {
           <BarChart data={data} width={width} height={height} id={barChartId} />
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={2}>
-          <PieChart />
+          <PieChart
+            data={Array.from({ length: 3 }, () =>
+              Math.round(Math.random() * 100)
+            )}
+            width={width}
+            height={height}
+            id={pieChartId}
+          />
         </TabPanel>
       </main>
     </>
