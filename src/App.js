@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Tabs, Tab, TabPanel } from "./components/tabs/Tabs";
 import BarChart from "./components/barchart/BarChart";
 import LineChart from "./components/linechart/LineChart";
+import PieChart from "./components/piechart/PieChart";
 import styled from "styled-components";
 import "./App.css";
 
@@ -15,8 +16,11 @@ function App() {
   const [activeTab, setActiveTab] = useState(1);
   const [lineChartId, setLineChartId] = useState("linechart");
   const [barChartId, setBarChartId] = useState("barchart");
+  const [pieChartId, setPieChartId] = useState("piechart");
   const [data, setData] = useState(
-    Array.from({ length: 12 }, () => Math.round(Math.random() * 100))
+    Array.from({ length: Math.floor(Math.random() * 24) + 8 }, () =>
+      Math.round(Math.random() * 100)
+    )
   );
   const [width, setWidth] = useState(800);
   const [height, setHeight] = useState(400);
@@ -33,7 +37,7 @@ function App() {
           <Tabs selectedTab={activeTab} onChange={handleChange}>
             <Tab label="Line Chart" value={0}></Tab>
             <Tab label="Bar Chart" value={1}></Tab>
-            <Tab label="Pie Graph" value={2}></Tab>
+            <Tab label="Pie Chart" value={2}></Tab>
           </Tabs>
         </TabsContainer>
       </header>
@@ -50,7 +54,14 @@ function App() {
           <BarChart data={data} width={width} height={height} id={barChartId} />
         </TabPanel>
         <TabPanel value={activeTab} selectedIndex={2}>
-          <h1>Tab 3</h1>
+          <PieChart
+            data={Array.from({ length: 3 }, () =>
+              Math.round(Math.random() * 100)
+            )}
+            width={width}
+            height={height}
+            id={pieChartId}
+          />
         </TabPanel>
       </main>
     </>
